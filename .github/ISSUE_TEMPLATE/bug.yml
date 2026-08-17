@@ -1,0 +1,18 @@
+name: Bug report
+description: Report a reproducible module defect using synthetic data.
+body:
+  - type: markdown
+    attributes:
+      value: Never include orders, customer data, Commerce credentials or GOVP tokens.
+  - type: input
+    id: version
+    attributes:
+      label: Magento/Adobe Commerce and module versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+    validations:
+      required: true

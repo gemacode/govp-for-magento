@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/consumer.xsd">
+  <consumer name="gemacode.govp.shipment.process" queue="gemacode.govp.shipment.process" handler="Gemacode\Govp\Model\ShipmentConsumer::process" maxMessages="100" maxIdleTime="60" onlySpawnWhenMessageAvailable="1"/>
+</config>

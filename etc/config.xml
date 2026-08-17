@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default><govp><general><enabled>0</enabled><exchange_url>https://partners.gemacode.org/exchange/api</exchange_url><issuer_name></issuer_name><validity_days>365</validity_days></general></govp></default>
+</config>
