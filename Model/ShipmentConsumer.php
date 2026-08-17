@@ -43,12 +43,13 @@ final class ShipmentConsumer
             }
             $incrementId = (string)$shipment->getIncrementId();
             $hash = CanonicalEvidence::hash((int)$id, $incrementId, $storeId, $lines);
+            $validUntil = DeterministicValidity::fromCreatedAt((string)$shipment->getCreatedAt(), $days);
             $result = $this->exchange->issue($baseUrl, $token, sprintf('magento:store:%d:shipment:%d', $storeId, $id), [
                 'issuer' => ['name' => $issuer],
                 'subject' => ['type' => 'shipment', 'id' => $incrementId, 'name' => 'Magento shipment ' . $incrementId, 'description' => count($lines) . ' shipped lines'],
                 'requirement' => 'Demuestra una expedición de Magento o Adobe Commerce mediante una huella de sus posiciones mínimas.',
                 'evidence' => [['label' => 'Huella canónica de la expedición Magento', 'sha256' => $hash]],
-                'validUntil' => gmdate('c', time() + $days * 86400),
+                'validUntil' => $validUntil,
                 'source' => ['platform' => 'magento', 'externalId' => 'shipment-' . $id],
             ]);
             $this->jobs->success((int)$id, (string)$result['govp']['code'], (string)$result['govp']['verifyUrl']);

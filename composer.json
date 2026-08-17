@@ -12,5 +12,15 @@
   "autoload": {
     "files": ["registration.php"],
     "psr-4": {"Gemacode\\Govp\\": ""}
+  },
+  "archive": {
+    "exclude": [
+      "/.github",
+      "/tests",
+      "/govp-for-magento-*.zip",
+      "/private",
+      "/CONTRIBUTING.md",
+      "/NATIVE_ACCEPTANCE.md"
+    ]
   }
 }

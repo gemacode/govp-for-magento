@@ -3,7 +3,7 @@
 Módulo abierto para emitir GOVP automáticamente al crear una expedición en
 Magento Open Source o Adobe Commerce 2.4.
 
-> Estado: candidato técnico `0.1.0`, todavía unidireccional. Requiere una prueba
+> Estado: candidato técnico `0.1.1`, todavía unidireccional. Requiere una prueba
 > nativa limpia y no se presenta como extensión validada para producción.
 
 ## Qué hace
@@ -15,7 +15,11 @@ Magento Open Source o Adobe Commerce 2.4.
 - publica únicamente el identificador de expedición en Message Queue Framework;
 - usa AMQP, STOMP o base de datos según la conexión de cola de la instalación;
 - reclama el trabajo en una tabla propia y conserva estado, intentos, código y URL;
+- recupera automáticamente una reclamación `processing` abandonada durante más
+  de 15 minutos tras una caída del consumidor;
 - emite con clave idempotente por tienda y expedición;
+- deriva la vigencia de la fecha inmutable de creación de la expedición para que
+  todos los reintentos envíen exactamente el mismo contenido;
 - envía solo una huella SHA-256 de SKU, cantidad e identificadores mínimos;
 - deja los fallos en `attention` para reintento/reconciliación.
 
@@ -27,7 +31,7 @@ y [Message Queue Framework](https://developer.adobe.com/commerce/php/development
 
 ```bash
 composer config repositories.govp path /ruta/govp-for-magento
-composer require gemacode/module-govp:0.1.0
+composer require gemacode/module-govp:0.1.1
 bin/magento module:enable Gemacode_Govp
 bin/magento setup:upgrade
 bin/magento cache:flush
