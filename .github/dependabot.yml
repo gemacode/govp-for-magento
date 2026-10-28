@@ -2,6 +2,10 @@ version: 2
 updates:
   - package-ecosystem: composer
     directory: /
+    # Version updates require authenticated access to repo.magento.com.
+    # Restore a positive limit after configuring the registry and its secrets.
+    # Dependabot security updates are not disabled by this version-update limit.
+    open-pull-requests-limit: 0
     schedule:
       interval: weekly
   - package-ecosystem: github-actions
